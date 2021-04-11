@@ -1,38 +1,131 @@
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  font-size: 16px;
+  background-color: #fff;
+  min-width: 360px;
+}
+
 .App {
+  text-align: center;
+  max-width: 728px;
+  margin: 0 auto;
+}
+
+.App header {
+  background-color: #ffca28;
+  position: fixed;
+  max-width: 728px;
+  height: 10vh;
+  min-height: 50px;
+  color: #fff;
+  width: 100%;
+  top: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  z-index: 99;
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+.App header h1 {
+  font-size: 1.4rem;
+  font-weight: 400;
+}
+
+.App section {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 100vh;
+  border-color: #d1d1d1;
+  border-style: solid;
+  border-width: 0 1px 0 1px;
+}
+
+main {
+  padding: 0 10px;
+  height: 80vh;
+  margin: 10vh 0 10vh;
+  overflow-y: scroll;
+  display: flex;
+  flex-direction: column;
+}
+
+form {
+  height: 10vh;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  max-width: 726px;
+  display: flex;
+  border-top: 1px solid #d1d1d1;
+}
+
+input {
+  line-height: 1.5;
+  font-size: 1.25rem;
+  outline: none;
+  border: none;
+  padding: 0 10px;
+}
+
+button {
+  background-color: #ffa000;
+  border: none;
+  border-radius: 6px;
+  color: #fff;
+  padding: 0.5rem 1rem;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  cursor: pointer;
+  font-size: 1.25rem;
+}
+
+button:hover {
+  background-color: #f57c00;
+}
+
+.sign-in {
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+.message {
+  display: flex;
+  align-items: center;
+}
+
+.message p {
+  max-width: 500px;
+  margin-bottom: 12px;
+  line-height: 24px;
+  padding: 10px 20px;
+  border-radius: 25px;
+  position: relative;
+  color: #fff;
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.sent {
+  flex-direction: row-reverse;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+.sent p {
   color: white;
+  background: #0b93f6;
+  align-self: flex-end;
+}
+.received p {
+  background: #e5e5ea;
+  color: black;
 }
 
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin: 2px 5px;
 }
