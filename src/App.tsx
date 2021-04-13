@@ -36,9 +36,16 @@ function SignOut() {
   );
 }
 
-function ChatMessage({ message }) {
+interface IMessage {
+  id: string;
+  uid: string;
+  photoURL: string;
+  text: string;
+}
+
+function ChatMessage({ message }: { message: IMessage }) {
   const { uid, photoURL, text } = message;
-  const messageClass = uid === auth.currentUser.uid ? "sent" : "received";
+  const messageClass = uid === auth.currentUser?.uid ? "sent" : "received";
 
   return (
     <div className={`message ${messageClass}`}>
@@ -52,13 +59,13 @@ function ChatRoom() {
   const messagesRef = firestore.collection("messages");
   const query = messagesRef.orderBy("createdAt").limit(25);
 
-  const [messages] = useCollectionData(query, { idField: "id" });
+  const [messages] = useCollectionData<IMessage>(query, { idField: "id" });
   const [formValue, setFormValue] = useState("");
 
-  async function sendMessage(e) {
+  async function sendMessage(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
 
-    const { uid, photoURL } = auth.currentUser;
+    const { uid, photoURL } = auth.currentUser || {};
 
     await messagesRef.add({
       text: formValue,
