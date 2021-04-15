@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import "./App.css";
 
 import firebase from "./firebase";
@@ -54,6 +54,7 @@ function ChatRoom() {
 
   const [messages] = useCollectionData<IMessage>(query, { idField: "id" });
   const [formValue, setFormValue] = useState("");
+  const lastMsgRef = useRef<null | HTMLDivElement>(null);
 
   async function sendMessage(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -70,11 +71,16 @@ function ChatRoom() {
     setFormValue("");
   }
 
+  useEffect(() => lastMsgRef?.current?.scrollIntoView({ behavior: "smooth" }), [
+    messages,
+  ]);
+
   return (
     <>
       <main>
         {messages &&
           messages.map((msg) => <ChatMessage key={msg.id} message={msg} />)}
+        <div ref={lastMsgRef}></div>
       </main>
       <form onSubmit={sendMessage}>
         <input
